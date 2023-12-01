@@ -1,13 +1,20 @@
 import express, { Express, Request, Response } from 'express';
+import cors from "cors"
 import dotenv from 'dotenv';
+import { taskService } from './services/task/task.service';
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Express + TypeScript Server is workinngggggg');
+app.use(cors())
+
+app.get('/task', (req: Request, res: Response) => {
+    res.send(taskService.query());
+});
+app.get('/task:id', (req: Request, res: Response) => {
+    res.send(taskService.getById(req.params.id));
 });
 
 app.listen(port, () => {
