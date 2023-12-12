@@ -9,6 +9,14 @@ export interface Task {
     userId: Uid;
 }
 
+export interface TaskDto {
+    title: string;
+    desc: string;
+    status: Status;
+    tag: Tags;
+    userId: Uid;
+}
+
 export enum Tags {
     Bug, Feature
 }
